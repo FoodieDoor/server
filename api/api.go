@@ -22,7 +22,7 @@ func New(enableCORS bool) (*chi.Mux, error) {
 	// 	return nil, err
 	// }
 
-	appAPI, err := app.NewAPI(db)
+	appAPI, err := app.NewAPI()
 	if err != nil {
 		logger.WithField("module", "app").Error(err)
 		return nil, err
@@ -35,7 +35,7 @@ func New(enableCORS bool) (*chi.Mux, error) {
 	r.Use(middleware.DefaultCompress)
 	r.Use(middleware.Timeout(15 * time.Second))
 
-	r.Use(logging.NewStructuredLogger(logger))
+	// r.Use(logging.NewStructuredLogger(logger))
 	r.Use(render.SetContentType(render.ContentTypeJSON))
 
 	// use CORS middleware if client is not served by this api, e.g. from other domain or CDN

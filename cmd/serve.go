@@ -14,7 +14,7 @@ var serveCmd = &cobra.Command{
 	Short: "Starts a http server and serves the configured api",
 	Long:  "Starts a http server and serves the configured api",
 	Run: func(cmd *cobra.Command, args []string) {
-		server, err := api.NewServer()
+		server, err := api.CreateServer()
 		if err != nil {
 			log.Fatal(err)
 		}
